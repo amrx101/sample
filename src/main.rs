@@ -5,9 +5,11 @@ use rand::Rng;
 fn main() {
 
     /// place the  certificates  in this directory itself.
-    let ca = include_bytes!("broker-ca.pem").to_vec();
+    let ca = include_bytes!("broker-ca.pem").to_vec();x
     let client = include_bytes!("new_c.cert.pem").to_vec();
     let client_key = include_bytes!("new_c.key.pem").to_vec();
+
+    /// change localhost to actual domain.
     let mqtt_options = MqttOptions::new(
         "test-pubsub1", "localhost", 443
     ).
