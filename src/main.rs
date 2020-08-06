@@ -5,13 +5,13 @@ use rand::Rng;
 fn main() {
 
     /// place the  certificates  in this directory itself.
-    let ca = include_bytes!("broker-ca.pem").to_vec();x
+    let ca = include_bytes!("broker-ca.pem").to_vec();
     let client = include_bytes!("new_c.cert.pem").to_vec();
     let client_key = include_bytes!("new_c.key.pem").to_vec();
 
     /// change localhost to actual domain.
     let mqtt_options = MqttOptions::new(
-        "test-pubsub1", "localhost", 443
+        "test-pubsub1", "ingest.staging.ather.vimana.us", 443
     ).
     set_ca(ca).
     set_client_auth(client, client_key);
@@ -22,7 +22,7 @@ fn main() {
     let sleep_time = Duration::from_secs(1);
     let mut s = String::new();
 
-    for _ in 0..400 {
+    for _ in 0..40 {
         s.push_str("hello world");
     }
     thread::spawn(move || {
